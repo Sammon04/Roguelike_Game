@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SpeedBulletStrategy" format=3 uid="uid://ctvl653k3bobo"]
+
+[ext_resource type="Script" uid="uid://cddjx072jtk75" path="res://Util/Strategy/speed_bullet_strategy.gd" id="1_8hs1l"]
+[ext_resource type="Texture2D" uid="uid://b8w5bct85846f" path="res://Graphics/upgrade/upgrade.png" id="2_paq7d"]
+
+[resource]
+script = ExtResource("1_8hs1l")
+speed_increase = 100.0
+upgrade_text = "Speed"
+metadata/_custom_type_script = "uid://cddjx072jtk75"

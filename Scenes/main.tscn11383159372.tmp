@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://bcno2xy0q4t5c"]
+
+[ext_resource type="Texture2D" uid="uid://dbv4m6jumis2i" path="res://Graphics/background/bg.png" id="1_sugp2"]
+[ext_resource type="PackedScene" uid="uid://b4vimpmksh6y8" path="res://Player/player.tscn" id="2_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://ces8wovhg1sy2" path="res://Scenes/director.tscn" id="3_tbgi4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w8frs"]
+size = Vector2(20, 720)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mx8sn"]
+size = Vector2(1280, 20)
+
+[node name="Main" type="Node" unique_id=2031225890]
+
+[node name="Bg" type="Sprite2D" parent="." unique_id=626524100]
+position = Vector2(665, 361)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_sugp2")
+
+[node name="Player" parent="." unique_id=1287007974 instance=ExtResource("2_jyhfs")]
+position = Vector2(630, 353)
+acceleration = 500
+friction = 500
+
+[node name="Director" parent="." unique_id=1807380165 instance=ExtResource("3_tbgi4")]
+spawn_delay = 2.0
+
+[node name="Borders" type="Node2D" parent="." unique_id=1969603087]
+
+[node name="LeftBorder" type="StaticBody2D" parent="Borders" unique_id=1160745300]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/LeftBorder" unique_id=180642634]
+position = Vector2(-10, 360)
+shape = SubResource("RectangleShape2D_w8frs")
+
+[node name="RightBorder" type="StaticBody2D" parent="Borders" unique_id=473361618]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/RightBorder" unique_id=1127553337]
+position = Vector2(1290, 360)
+shape = SubResource("RectangleShape2D_w8frs")
+
+[node name="TopBorder" type="StaticBody2D" parent="Borders" unique_id=2064449489]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/TopBorder" unique_id=965616419]
+position = Vector2(640, -10)
+shape = SubResource("RectangleShape2D_mx8sn")
+
+[node name="BottomBorder" type="StaticBody2D" parent="Borders" unique_id=1034515637]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/BottomBorder" unique_id=415041559]
+position = Vector2(640, 730)
+shape = SubResource("RectangleShape2D_mx8sn")

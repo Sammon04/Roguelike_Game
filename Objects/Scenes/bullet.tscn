@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://d3t74fy3vxwl8"]
+
+[ext_resource type="Script" uid="uid://c7udib10g0pvs" path="res://Objects/Scripts/bullet.gd" id="1_onpr3"]
+[ext_resource type="Texture2D" uid="uid://b0k1qsf0nuurk" path="res://Graphics/bullet/bullet.png" id="2_6wumr"]
+[ext_resource type="Texture2D" uid="uid://t81xi8hoer38" path="res://Graphics/bullet/bullet_explosion.png" id="3_35gtq"]
+
+[sub_resource type="Animation" id="Animation_l5glv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeathSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DeathSprite:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BulletSprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_eoqba"]
+resource_name = "death"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeathSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DeathSprite:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BulletSprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qncy5"]
+_data = {
+&"RESET": SubResource("Animation_l5glv"),
+&"death": SubResource("Animation_eoqba")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mkf8s"]
+
+[node name="Bullet" type="Area2D" unique_id=22684917]
+script = ExtResource("1_onpr3")
+
+[node name="Visuals" type="Node2D" parent="." unique_id=975585194]
+
+[node name="BulletSprite" type="Sprite2D" parent="Visuals" unique_id=1567238981]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_6wumr")
+
+[node name="DeathSprite" type="Sprite2D" parent="Visuals" unique_id=545956080]
+visible = false
+position = Vector2(-0.775, 0)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_35gtq")
+
+[node name="Death" type="AnimationPlayer" parent="Visuals" unique_id=568959460]
+libraries/ = SubResource("AnimationLibrary_qncy5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=270895748]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_mkf8s")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="Visuals/Death" to="." method="_on_death_animation_finished"]
