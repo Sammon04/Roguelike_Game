@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://ces8wovhg1sy2"]
+
+[ext_resource type="Script" uid="uid://bhacpeeyps7ym" path="res://Objects/Scripts/director.gd" id="1_8c0qa"]
+
+[node name="Director" type="Node" unique_id=1807380165]
+script = ExtResource("1_8c0qa")
+
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=1074548989]
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=166984506]
+wait_time = 3.0
+autostart = true
+
+[node name="WaveTimer" type="Timer" parent="." unique_id=2045210107]
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]

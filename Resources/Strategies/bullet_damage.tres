@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="DamageBulletStrategy" format=3 uid="uid://bkcmutkngrrg7"]
+
+[ext_resource type="Script" uid="uid://cpteyovolixas" path="res://Util/Strategy/damage_bullet_strategy.gd" id="1_ofukn"]
+[ext_resource type="Texture2D" uid="uid://b8w5bct85846f" path="res://Graphics/upgrade/upgrade.png" id="2_sgjyh"]
+
+[resource]
+script = ExtResource("1_ofukn")
+damage_increase = 10.0
+upgrade_text = "Damage"
+metadata/_custom_type_script = "uid://cpteyovolixas"

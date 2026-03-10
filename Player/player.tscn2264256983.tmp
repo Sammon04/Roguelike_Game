@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://b4vimpmksh6y8"]
+
+[ext_resource type="Texture2D" uid="uid://cceema2ya4e4l" path="res://Graphics/player/player.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://b0cb1mxpxq3jc" path="res://Player/Scripts/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://7vkcxf4j0c5u" path="res://Graphics/player/playerBase.png" id="2_qhqgy"]
+[ext_resource type="Script" uid="uid://drhjhoe7lv5jk" path="res://Player/Scripts/player_gun_pivot.gd" id="3_qlg0r"]
+[ext_resource type="Script" uid="uid://wfnd8rx02hpr" path="res://Player/player_movement.gd" id="3_vtle1"]
+[ext_resource type="Script" uid="uid://dewi7auvv40hb" path="res://Player/Scripts/player_gun.gd" id="4_dqkch"]
+[ext_resource type="AudioStream" uid="uid://byd077pd02q1u" path="res://Sounds/laserShoot.wav" id="6_tuyoq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
+
+[node name="Player" type="CharacterBody2D" unique_id=1930106069 groups=["player"]]
+script = ExtResource("1_g2els")
+
+[node name="PlayerSprite" type="Sprite2D" parent="." unique_id=118958777]
+scale = Vector2(0.3, 0.2)
+texture = ExtResource("2_qhqgy")
+
+[node name="PlayerMovement" type="Node" parent="." unique_id=997482494]
+script = ExtResource("3_vtle1")
+
+[node name="GunPivot" type="Node2D" parent="." unique_id=242696445]
+scale = Vector2(0.15, 0.15)
+script = ExtResource("3_qlg0r")
+
+[node name="Gun" type="Node2D" parent="GunPivot" unique_id=1056202318]
+script = ExtResource("4_dqkch")
+fire_rate = null
+spread = 15.0
+num_bullets = null
+
+[node name="Sprite2D" type="Sprite2D" parent="GunPivot/Gun" unique_id=26623763]
+texture = ExtResource("1_3vyb7")
+offset = Vector2(40.13, 0)
+
+[node name="ShootPoint" type="Marker2D" parent="GunPivot/Gun" unique_id=260931110]
+position = Vector2(149, 0)
+
+[node name="ShootSound" type="AudioStreamPlayer" parent="GunPivot/Gun" unique_id=637626652]
+stream = ExtResource("6_tuyoq")
+volume_db = -5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=939057576]
+scale = Vector2(1.8, 1.8)
+shape = SubResource("CircleShape2D_g2els")
