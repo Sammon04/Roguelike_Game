@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://ces8wovhg1sy2"]
 
 [ext_resource type="Script" uid="uid://bhacpeeyps7ym" path="res://Objects/Scripts/director.gd" id="1_8c0qa"]
+[ext_resource type="PackedScene" uid="uid://bap31726r8p56" path="res://Objects/Enemies/Scenes/basic_enemy.tscn" id="2_kqw4h"]
+[ext_resource type="PackedScene" uid="uid://cvy6j2c17tuut" path="res://Objects/Enemies/Scenes/fast_enemy.tscn" id="3_15p4y"]
+[ext_resource type="PackedScene" uid="uid://brp2qbjp1ltkx" path="res://Objects/Enemies/Scenes/tough_enemy.tscn" id="4_sdhsa"]
 
 [node name="Director" type="Node" unique_id=1807380165]
 script = ExtResource("1_8c0qa")
+enemy_scenes = Array[PackedScene]([ExtResource("2_kqw4h"), ExtResource("3_15p4y"), ExtResource("4_sdhsa")])
 
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=1074548989]
 

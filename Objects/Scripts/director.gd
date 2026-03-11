@@ -5,8 +5,8 @@ extends Node
 @onready var spawn_point : Marker2D = $SpawnPoint
 @onready var wave_counter : Label = $"../WaveCounter"
 @onready var player = get_tree().get_first_node_in_group("player") as Player
-var enemy_scene = preload("res://Objects/Scenes/enemy.tscn")
 
+@export var enemy_scenes : Array[PackedScene]
 @export var current_wave : int = 0
 @export var time_between_waves : float = 15
 @export var early_wave_delay : float = 3.0
@@ -51,6 +51,7 @@ func end_wave_early():
 		wave_timer.start(early_wave_delay)
 	
 func spawn_enemy():
+	var enemy_scene = enemy_scenes.pick_random()
 	var enemy = enemy_scene.instantiate()
 	
 	pick_random_spawn_point()

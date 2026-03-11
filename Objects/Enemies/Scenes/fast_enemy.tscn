@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://bap31726r8p56"]
+[gd_scene format=3 uid="uid://cvy6j2c17tuut"]
 
-[ext_resource type="Script" uid="uid://djxtr1mu4n2cm" path="res://Objects/Scripts/enemy.gd" id="1_sto6h"]
-[ext_resource type="Texture2D" uid="uid://ceqoc6brfrlwd" path="res://Graphics/enemy/enemy.png" id="2_ytyfe"]
+[ext_resource type="Script" uid="uid://de7i2q8dnyiaw" path="res://Objects/Enemies/Scripts/fast_enemy.gd" id="1_bx0t4"]
+[ext_resource type="Texture2D" uid="uid://cyuwlc3dcmrwg" path="res://Graphics/enemy/fast_enemy.png" id="2_ucpbs"]
 
 [sub_resource type="Animation" id="Animation_md0e3"]
 length = 0.001
@@ -99,14 +99,14 @@ corner_radius_bottom_left = 6
 corner_detail = 6
 
 [node name="Enemy" type="CharacterBody2D" unique_id=297808548 groups=["enemy"]]
-script = ExtResource("1_sto6h")
+script = ExtResource("1_bx0t4")
 
 [node name="Visuals" type="Node2D" parent="." unique_id=1416626296]
 scale = Vector2(0.99999994, 0.99999994)
 
 [node name="EnemySprite" type="Sprite2D" parent="Visuals" unique_id=1528180432]
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_ytyfe")
+texture = ExtResource("2_ucpbs")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals" unique_id=797329095]
 libraries/ = SubResource("AnimationLibrary_5uy6h")
