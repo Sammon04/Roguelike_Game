@@ -21,9 +21,6 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	rng.randomize()
 	start_wave()
-	
-func _process(delta: float) -> void:
-	print("Wave timer: ", wave_timer.time_left)
 
 func start_wave():
 	wave_ended = false
