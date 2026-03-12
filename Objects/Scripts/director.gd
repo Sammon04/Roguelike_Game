@@ -16,6 +16,7 @@ var enemies_spawned : int = 0
 var enemies_alive : int = 0
 var spawning_enemies : bool = false
 var wave_ended : bool = false
+var wave_shortened : bool = false
 var rng = RandomNumberGenerator.new()
 
 func _ready():
@@ -24,6 +25,7 @@ func _ready():
 
 func start_wave():
 	wave_ended = false
+	wave_shortened = false
 	current_wave += 1
 	wave_counter.text = "Wave " + str(current_wave)
 	
@@ -69,11 +71,14 @@ func _on_enemy_died():
 	
 	print("Enemy killed")
 	print("Enemies alive: " + str(enemies_alive))
-	if enemies_alive == 0 and wave_ended:
+	if enemies_alive == 0 and wave_ended and not wave_shortened:
 		print("Ending wave early")
 		shorten_wave_timer()
 
 func shorten_wave_timer():
+	if wave_shortened:
+		return
+	wave_shortened = true
 	if wave_timer.time_left > early_wave_delay:
 		wave_timer.start(early_wave_delay)
 
