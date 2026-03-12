@@ -1,6 +1,8 @@
 extends BaseEnemy
 
-func _ready():
+func _init():
 	enemy_speed = 100
-	max_health = 400
+	max_health = 250
+
+func _ready():
 	super()

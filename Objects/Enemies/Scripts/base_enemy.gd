@@ -6,8 +6,9 @@ extends CharacterBody2D
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var health_bar: ProgressBar = $HealthBar
 
-@export var enemy_speed = 200
-@export var max_health: int = 100
+@export var credits = 0
+@export var enemy_speed = 0
+@export var max_health: int = 0
 
 var health: int
 var is_active: bool = false

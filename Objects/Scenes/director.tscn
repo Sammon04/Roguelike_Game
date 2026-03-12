@@ -1,13 +1,15 @@
 [gd_scene format=3 uid="uid://ces8wovhg1sy2"]
 
 [ext_resource type="Script" uid="uid://bhacpeeyps7ym" path="res://Objects/Scripts/director.gd" id="1_8c0qa"]
-[ext_resource type="PackedScene" uid="uid://bap31726r8p56" path="res://Objects/Enemies/Scenes/basic_enemy.tscn" id="2_kqw4h"]
-[ext_resource type="PackedScene" uid="uid://cvy6j2c17tuut" path="res://Objects/Enemies/Scenes/fast_enemy.tscn" id="3_15p4y"]
-[ext_resource type="PackedScene" uid="uid://brp2qbjp1ltkx" path="res://Objects/Enemies/Scenes/tough_enemy.tscn" id="4_sdhsa"]
+[ext_resource type="Script" uid="uid://debbefyd7erwv" path="res://Objects/Enemies/Scripts/enemy_data.gd" id="2_15p4y"]
+[ext_resource type="Resource" uid="uid://dg410b53ylb7g" path="res://Resources/EnemyData/basic_enemy.tres" id="3_sdhsa"]
+[ext_resource type="Resource" uid="uid://bf56bfm8t6seb" path="res://Resources/EnemyData/fast_enemy.tres" id="4_c3nw7"]
+[ext_resource type="Resource" uid="uid://cscc6uiwcmwlk" path="res://Resources/EnemyData/tough_enemy.tres" id="5_q7l26"]
 
 [node name="Director" type="Node" unique_id=1807380165]
 script = ExtResource("1_8c0qa")
-enemy_scenes = Array[PackedScene]([ExtResource("2_kqw4h"), ExtResource("3_15p4y"), ExtResource("4_sdhsa")])
+enemy_types = Array[ExtResource("2_15p4y")]([ExtResource("3_sdhsa"), ExtResource("4_c3nw7"), ExtResource("5_q7l26")])
+spawn_delay = 1.0
 
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=1074548989]
 
@@ -16,6 +18,7 @@ wait_time = 3.0
 autostart = true
 
 [node name="WaveTimer" type="Timer" parent="." unique_id=2045210107]
+one_shot = true
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]

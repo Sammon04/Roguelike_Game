@@ -21,7 +21,6 @@ texture = ExtResource("1_kln2b")
 position = Vector2(630, 353)
 
 [node name="Director" parent="." unique_id=1807380165 instance=ExtResource("3_pbw6q")]
-current_wave = 3
 
 [node name="Borders" type="Node2D" parent="." unique_id=1969603087]
 

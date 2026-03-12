@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://bf56bfm8t6seb"]
+
+[ext_resource type="PackedScene" uid="uid://cvy6j2c17tuut" path="res://Objects/Enemies/Scenes/fast_enemy.tscn" id="1_2ou1f"]
+[ext_resource type="Script" uid="uid://debbefyd7erwv" path="res://Objects/Enemies/Scripts/enemy_data.gd" id="1_05k3u"]
+
+[resource]
+script = ExtResource("1_05k3u")
+scene = ExtResource("1_2ou1f")
+credits = 5
+metadata/_custom_type_script = "uid://debbefyd7erwv"
