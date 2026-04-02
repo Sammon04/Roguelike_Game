@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cceema2ya4e4l" path="res://Graphics/player/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://b0cb1mxpxq3jc" path="res://Player/Scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://7vkcxf4j0c5u" path="res://Graphics/player/playerBase.png" id="2_qhqgy"]
+[ext_resource type="Script" uid="uid://wgcu43ktilig" path="res://Player/Scripts/camera_manager.gd" id="3_od3ui"]
 [ext_resource type="Script" uid="uid://drhjhoe7lv5jk" path="res://Player/Scripts/player_gun_pivot.gd" id="3_qlg0r"]
 [ext_resource type="Script" uid="uid://wfnd8rx02hpr" path="res://Player/player_movement.gd" id="3_vtle1"]
 [ext_resource type="Script" uid="uid://dewi7auvv40hb" path="res://Player/Scripts/player_gun.gd" id="4_dqkch"]
@@ -16,6 +17,11 @@ script = ExtResource("1_g2els")
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=118958777]
 scale = Vector2(0.3, 0.2)
 texture = ExtResource("2_qhqgy")
+
+[node name="CameraManager" type="Node" parent="." unique_id=1613435143]
+script = ExtResource("3_od3ui")
+
+[node name="Camera" type="Camera2D" parent="CameraManager" unique_id=1810403193]
 
 [node name="PlayerMovement" type="Node" parent="." unique_id=997482494]
 script = ExtResource("3_vtle1")
