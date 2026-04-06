@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dbv4m6jumis2i" path="res://Graphics/background/bg.png" id="1_kln2b"]
 [ext_resource type="PackedScene" uid="uid://b4vimpmksh6y8" path="res://Player/player.tscn" id="2_rgh2o"]
-[ext_resource type="PackedScene" uid="uid://ces8wovhg1sy2" path="res://Objects/Scenes/director.tscn" id="3_pbw6q"]
+[ext_resource type="PackedScene" uid="uid://ces8wovhg1sy2" path="res://Objects/Scenes/director.tscn" id="3_kln2b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w8frs"]
 size = Vector2(20, 720)
@@ -20,7 +20,7 @@ texture = ExtResource("1_kln2b")
 [node name="Player" parent="." unique_id=1287007974 instance=ExtResource("2_rgh2o")]
 position = Vector2(630, 353)
 
-[node name="Director" parent="." unique_id=1807380165 instance=ExtResource("3_pbw6q")]
+[node name="Director" parent="." unique_id=1807380165 instance=ExtResource("3_kln2b")]
 
 [node name="Borders" type="Node2D" parent="." unique_id=1969603087]
 

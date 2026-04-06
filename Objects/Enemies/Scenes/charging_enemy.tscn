@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://duwqhqqy6q6d"]
+
+[ext_resource type="Script" uid="uid://8vc20u1c8xjd" path="res://Objects/Enemies/Scripts/charging_enemy.gd" id="1_c4nhr"]
+[ext_resource type="Texture2D" uid="uid://ceqoc6brfrlwd" path="res://Graphics/enemy/basic_enemy.png" id="2_02pgy"]
+
+[sub_resource type="Animation" id="Animation_md0e3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.99999994, 0.99999994)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_4ra3w"]
+resource_name = "spawn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(4.4382715, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(4.43, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5uy6h"]
+_data = {
+&"RESET": SubResource("Animation_md0e3"),
+&"spawn": SubResource("Animation_4ra3w")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_md0e3"]
+radius = 13.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_md0e3"]
+bg_color = Color(0.2784, 0.87, 0.2784, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[node name="Enemy" type="CharacterBody2D" unique_id=297808548 groups=["enemy"]]
+script = ExtResource("1_c4nhr")
+
+[node name="Visuals" type="Node2D" parent="." unique_id=1416626296]
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="EnemySprite" type="Sprite2D" parent="Visuals" unique_id=1528180432]
+modulate = Color(1, 0.53, 0.53, 1)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_02pgy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals" unique_id=797329095]
+libraries/ = SubResource("AnimationLibrary_5uy6h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=323943593]
+shape = SubResource("CircleShape2D_md0e3")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1387917338]
+top_level = true
+offset_left = -18.0
+offset_top = -31.0
+offset_right = 19.0
+offset_bottom = -26.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_md0e3")
+fill_mode = 1
+show_percentage = false
+
+[node name="ChargeDelay" type="Timer" parent="." unique_id=130613713]
+
+[node name="ChargeTime" type="Timer" parent="." unique_id=335473019]
+
+[connection signal="animation_finished" from="Visuals/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="ChargeDelay" to="." method="_on_charge_delay_timeout"]
+[connection signal="timeout" from="ChargeTime" to="." method="_on_charge_time_timeout"]

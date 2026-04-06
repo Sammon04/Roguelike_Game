@@ -25,7 +25,7 @@ func _ready() -> void:
 	health_bar.value = health
 	health_bar.visible = false
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if not is_active:
 		return
 	follow_player()
@@ -35,8 +35,7 @@ func follow_player():
 	if not player:
 		return
 		
-	var direction = player.global_position - position
-	direction = direction.normalized()
+	var direction = (player.global_position - position).normalized()
 	velocity = direction * enemy_speed
 	
 	move_and_slide()

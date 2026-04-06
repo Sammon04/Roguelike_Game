@@ -93,7 +93,6 @@ _data = {
 
 [node name="Bullet" type="Area2D" unique_id=22684917]
 script = ExtResource("1_onpr3")
-damage = 50.0
 
 [node name="Visuals" type="Node2D" parent="." unique_id=975585194]
 

@@ -5,10 +5,11 @@
 [ext_resource type="Resource" uid="uid://dg410b53ylb7g" path="res://Resources/EnemyData/basic_enemy.tres" id="3_sdhsa"]
 [ext_resource type="Resource" uid="uid://bf56bfm8t6seb" path="res://Resources/EnemyData/fast_enemy.tres" id="4_c3nw7"]
 [ext_resource type="Resource" uid="uid://cscc6uiwcmwlk" path="res://Resources/EnemyData/tough_enemy.tres" id="5_q7l26"]
+[ext_resource type="Resource" uid="uid://div2orow7kdjg" path="res://Resources/EnemyData/charging_enemy.tres" id="6_sdhsa"]
 
 [node name="Director" type="Node" unique_id=1807380165]
 script = ExtResource("1_8c0qa")
-enemy_types = Array[ExtResource("2_15p4y")]([ExtResource("3_sdhsa"), ExtResource("4_c3nw7"), ExtResource("5_q7l26")])
+enemy_types = Array[ExtResource("2_15p4y")]([ExtResource("3_sdhsa"), ExtResource("4_c3nw7"), ExtResource("5_q7l26"), ExtResource("6_sdhsa")])
 spawn_delay = 1.0
 
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=1074548989]
