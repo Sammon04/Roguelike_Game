@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BulletStatUpgrade" format=3 uid="uid://dmdt2ksr6fipu"]
+
+[ext_resource type="Script" uid="uid://cpteyovolixas" path="res://Util/Upgrade_Effects/bullet_stat_upgrade.gd" id="1_bl4ge"]
+[ext_resource type="Texture2D" uid="uid://b8w5bct85846f" path="res://Graphics/upgrade/upgrade.png" id="2_gcav4"]
+
+[resource]
+script = ExtResource("1_bl4ge")
+stat = 1
+value = 50.0
+upgrade_name = "Stronger Propellant"
+description = "Makes bullets faster"
+texture = ExtResource("2_gcav4")
+metadata/_custom_type_script = "uid://cpteyovolixas"

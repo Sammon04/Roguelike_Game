@@ -1,3 +1,4 @@
+class_name PlayerGun
 extends Node2D
 
 @onready var shoot_point : Marker2D = $ShootPoint
@@ -34,7 +35,7 @@ func shoot(spread, num_bullets) -> void:
 		
 		get_tree().root.add_child(bullet)
 		
-		for strategy in player.upgrades:
-			strategy.apply_upgrade(bullet)
+		for upgrade in player.bullet_stat_upgrades:
+			upgrade.apply_to_bullet(bullet)
 		
 	shoot_sound.play()

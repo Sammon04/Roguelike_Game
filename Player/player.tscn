@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://7vkcxf4j0c5u" path="res://Graphics/player/playerBase.png" id="2_qhqgy"]
 [ext_resource type="Script" uid="uid://wgcu43ktilig" path="res://Player/Scripts/camera_manager.gd" id="3_od3ui"]
 [ext_resource type="Script" uid="uid://drhjhoe7lv5jk" path="res://Player/Scripts/player_gun_pivot.gd" id="3_qlg0r"]
-[ext_resource type="Script" uid="uid://wfnd8rx02hpr" path="res://Player/player_movement.gd" id="3_vtle1"]
+[ext_resource type="Script" uid="uid://wfnd8rx02hpr" path="res://Player/Scripts/player_movement.gd" id="3_vtle1"]
 [ext_resource type="Script" uid="uid://dewi7auvv40hb" path="res://Player/Scripts/player_gun.gd" id="4_dqkch"]
 [ext_resource type="AudioStream" uid="uid://byd077pd02q1u" path="res://Sounds/laserShoot.wav" id="6_tuyoq"]
 

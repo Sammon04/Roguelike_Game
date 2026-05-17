@@ -1,3 +1,4 @@
+class_name PlayerMovement
 extends Node
 
 @export var acceleration: int = 400

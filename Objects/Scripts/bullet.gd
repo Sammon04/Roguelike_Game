@@ -6,6 +6,7 @@ extends Area2D
 var is_active : bool
 var direction : Vector2 = Vector2.ZERO
 
+#UPGRADEABLE STATS
 @export var life_time : int = 1
 @export var speed : int = 500
 @export var damage : float = 10.0

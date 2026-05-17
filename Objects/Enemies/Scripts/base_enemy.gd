@@ -25,7 +25,7 @@ func _ready() -> void:
 	health_bar.value = health
 	health_bar.visible = false
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if not is_active:
 		return
 	follow_player()

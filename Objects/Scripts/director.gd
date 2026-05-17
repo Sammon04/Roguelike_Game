@@ -7,8 +7,8 @@ extends Node
 @onready var player = get_tree().get_first_node_in_group("player") as Player
 
 @export var enemy_types : Array[EnemyData]
-@export var upgrade_pool : Array[BaseBulletStrategy]
-@export var upgrade_scene : PackedScene
+@export var upgrade_pool : Array[BaseUpgrade]
+@export var item_scene : PackedScene
 @export var current_wave : int = 0
 @export var time_between_waves : float = 15
 @export var early_wave_delay : float = 3.0
@@ -38,7 +38,7 @@ func start_wave():
 	print("Starting wave " + str(current_wave) + ", credits available: " + str(wave_credits))
 	spawn_timer.wait_time = spawn_delay
 	spawn_timer.start()
-	spawn_upgrade()
+	spawn_item()
 	
 func _on_spawn_timer_timeout() -> void:
 	if spawning_enemies:
@@ -114,15 +114,15 @@ func pick_random_spawn_point() -> void:
 		if spawn_point.global_position.distance_to(player.global_position) >= 200:
 			valid_point = true	
 
-func get_random_upgrade() -> BaseBulletStrategy:
+func get_random_upgrade() -> BaseUpgrade:
 	return upgrade_pool.pick_random()
 
-func spawn_upgrade() -> void:
-	var upgrade = upgrade_scene.instantiate()
-	var strategy = get_random_upgrade()
-	upgrade.bullet_strategy = strategy
+func spawn_item() -> void:
+	var item = item_scene.instantiate()
+	var item_effect = get_random_upgrade()
+	item.upgrade = item_effect
 	
 	pick_random_spawn_point()
-	upgrade.position = spawn_point.global_position
-	get_tree().current_scene.add_child(upgrade)
+	item.position = spawn_point.global_position
+	get_tree().current_scene.add_child.call_deferred(item)
 	

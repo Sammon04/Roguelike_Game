@@ -9,6 +9,6 @@ func zoom():
 	if Input.is_action_just_released("scroll_down"):
 		camera.zoom -= Vector2(0.05, 0.05)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	camera.global_position = player.global_position
 	zoom()

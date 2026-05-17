@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cp24gwebc8141"]
+
+[ext_resource type="Script" uid="uid://cweppavge5i6i" path="res://Objects/Scripts/item.gd" id="1_5l7uk"]
+[ext_resource type="Texture2D" uid="uid://b8w5bct85846f" path="res://Graphics/upgrade/upgrade.png" id="2_o57yu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yrefp"]
+
+[node name="Item" type="Area2D" unique_id=340434512]
+script = ExtResource("1_5l7uk")
+
+[node name="ItemSprite" type="Sprite2D" parent="." unique_id=1226956182]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_o57yu")
+offset = Vector2(0, -3.555)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=857053725]
+scale = Vector2(1.38, 1.38)
+shape = SubResource("CircleShape2D_yrefp")
+
+[node name="ItemLabel" type="Label" parent="." unique_id=884196906]
+offset_left = -32.0
+offset_top = -53.0
+offset_right = 33.0
+offset_bottom = -30.0
+text = "Damage"
+horizontal_alignment = 1
