@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BulletDebuffUpgrade" format=3 uid="uid://ck8oqn1mkjt4n"]
+
+[ext_resource type="Script" uid="uid://bu425rjt74230" path="res://Util/Debuff_Effects/base_debuff.gd" id="1_rchbw"]
+[ext_resource type="Script" uid="uid://b0gq0ijcrqm26" path="res://Util/Upgrade_Effects/bullet_debuff_upgrade.gd" id="2_2xgoe"]
+[ext_resource type="Resource" uid="uid://b2g4171rovcu5" path="res://Resources/Debuffs/Burn.tres" id="2_id5x7"]
+[ext_resource type="Texture2D" uid="uid://b8w5bct85846f" path="res://Graphics/upgrade/upgrade.png" id="4_13mdv"]
+
+[resource]
+script = ExtResource("2_2xgoe")
+debuffs = Array[ExtResource("1_rchbw")]([ExtResource("2_id5x7")])
+upgrade_name = "Burny Shells"
+description = "Shells Burn Enemies"
+texture = ExtResource("4_13mdv")
+metadata/_custom_type_script = "uid://b0gq0ijcrqm26"

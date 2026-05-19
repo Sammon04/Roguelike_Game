@@ -3,6 +3,8 @@ extends Area2D
 
 @onready var anim: AnimationPlayer = $Visuals/Death
 @onready var collision: CollisionShape2D = $CollisionShape2D
+
+var on_hit_debuffs: Array[BaseDebuff] = []
 var is_active : bool
 var direction : Vector2 = Vector2.ZERO
 
@@ -31,10 +33,13 @@ func die():
 	anim.play("death")
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.has_method("take_damage"):
-		body.take_damage(damage)
-		call_deferred("die")
-
+	if body is BaseEnemy:
+		if body.has_method("take_damage"):
+			body.take_damage(damage)
+			call_deferred("die")
+		if body.has_method("apply_debuff"):
+			for debuff in on_hit_debuffs:
+				body.apply_debuff(debuff)
 
 func _on_death_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "death":

@@ -11,6 +11,7 @@ extends CharacterBody2D
 @export var max_health: int = 0
 
 var health: int
+var active_debuffs: Array[BaseDebuff] = []
 var is_active: bool = false
 var dead : bool = false
 signal enemy_died
@@ -24,6 +25,12 @@ func _ready() -> void:
 	health_bar.max_value = max_health
 	health_bar.value = health
 	health_bar.visible = false
+
+func _process(delta: float) -> void:
+	for debuff in active_debuffs.duplicate():
+		if debuff.tick(delta):
+			debuff.on_remove(self)
+			active_debuffs.erase(debuff)
 
 func _physics_process(_delta: float) -> void:
 	if not is_active:
@@ -53,6 +60,10 @@ func die():
 	if dead:
 		return
 	
+	for debuff in active_debuffs:
+		debuff.on_remove(self)
+	active_debuffs.clear()
+	
 	dead = true
 	enemy_died.emit()
 	queue_free()
@@ -62,3 +73,18 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "spawn":
 		is_active = true
 		collision.disabled = false
+
+func apply_debuff(debuff: BaseDebuff) -> void:
+	if debuff is ActiveDebuff:
+		for active in active_debuffs:
+			if active is ActiveDebuff and active.source == debuff:
+				active.add_stack()
+				return
+	
+	var instance = debuff.duplicate()
+	
+	if instance is ActiveDebuff:
+		instance.source = debuff
+		
+	active_debuffs.append(instance)
+	instance.on_applied(self)

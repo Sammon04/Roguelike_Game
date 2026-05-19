@@ -6,7 +6,7 @@ extends Node2D
 @onready var player : Player = $"../../../Player"
 var bullet_scene : PackedScene = preload("res://Objects/Scenes/bullet.tscn")
 
-@export var fire_rate : float = 25
+@export var fire_rate : float = 5
 @export var spread : float = 2.0
 @export var num_bullets : int = 1
 
@@ -36,6 +36,8 @@ func shoot(spread, num_bullets) -> void:
 		get_tree().root.add_child(bullet)
 		
 		for upgrade in player.bullet_stat_upgrades:
+			upgrade.apply_to_bullet(bullet)
+		for upgrade in player.bullet_debuff_upgrades:
 			upgrade.apply_to_bullet(bullet)
 		
 	shoot_sound.play()

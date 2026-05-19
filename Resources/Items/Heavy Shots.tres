@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BulletStatUpgrade" format=3 uid="uid://dydiyv7k2d7ro"]
+
+[ext_resource type="Script" uid="uid://cpteyovolixas" path="res://Util/Upgrade_Effects/bullet_stat_upgrade.gd" id="1_eedxq"]
+[ext_resource type="Texture2D" uid="uid://b8w5bct85846f" path="res://Graphics/upgrade/upgrade.png" id="2_l1hw4"]
+
+[resource]
+script = ExtResource("1_eedxq")
+damage_mult = 1.5
+speed_mult = 0.6
+upgrade_name = "Heavy Shots"
+description = "Big damage but slow bullets"
+texture = ExtResource("2_l1hw4")
+metadata/_custom_type_script = "uid://cpteyovolixas"

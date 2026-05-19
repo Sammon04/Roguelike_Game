@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ActiveDebuff" format=3 uid="uid://b2g4171rovcu5"]
+
+[ext_resource type="Script" uid="uid://bpk44coswcqlr" path="res://Util/Debuff_Effects/active_debuff.gd" id="1_lddsg"]
+
+[resource]
+script = ExtResource("1_lddsg")
+damage_per_tick = 5.0
+tick_rate = 0.3
+duration = 5.0
+max_stack = 5
+metadata/_custom_type_script = "uid://bpk44coswcqlr"

@@ -7,14 +7,13 @@
 [ext_resource type="Resource" uid="uid://cscc6uiwcmwlk" path="res://Resources/EnemyData/tough_enemy.tres" id="5_q7l26"]
 [ext_resource type="Resource" uid="uid://div2orow7kdjg" path="res://Resources/EnemyData/charging_enemy.tres" id="6_sdhsa"]
 [ext_resource type="Script" uid="uid://chjuygrukdmqu" path="res://Util/Upgrade_Effects/base_upgrade.gd" id="7_0hefk"]
-[ext_resource type="Resource" uid="uid://bkcmutkngrrg7" path="res://Resources/Items/Stronger_Shells.tres" id="8_0hefk"]
-[ext_resource type="Resource" uid="uid://dmdt2ksr6fipu" path="res://Resources/Items/Stronger_Propellant.tres" id="9_dq3la"]
+[ext_resource type="Resource" uid="uid://b3lhhfcpemjm1" path="res://Resources/Items/Lighter_Shells.tres" id="8_rrurb"]
 [ext_resource type="PackedScene" uid="uid://cp24gwebc8141" path="res://Objects/Scenes/item.tscn" id="10_0hefk"]
 
 [node name="Director" type="Node" unique_id=1807380165]
 script = ExtResource("1_8c0qa")
 enemy_types = Array[ExtResource("2_15p4y")]([ExtResource("3_sdhsa"), ExtResource("4_c3nw7"), ExtResource("5_q7l26"), ExtResource("6_sdhsa")])
-upgrade_pool = Array[ExtResource("7_0hefk")]([ExtResource("8_0hefk"), ExtResource("9_dq3la")])
+upgrade_pool = Array[ExtResource("7_0hefk")]([ExtResource("8_rrurb")])
 item_scene = ExtResource("10_0hefk")
 spawn_delay = 1.0
 

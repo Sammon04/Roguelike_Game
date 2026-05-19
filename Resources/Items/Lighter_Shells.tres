@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="CompoundUpgrade" format=3 uid="uid://b3lhhfcpemjm1"]
+
+[ext_resource type="Script" uid="uid://c51r2scarmu7e" path="res://Util/Upgrade_Effects/compound_upgrade.gd" id="1_h6ihn"]
+[ext_resource type="Script" uid="uid://cpteyovolixas" path="res://Util/Upgrade_Effects/bullet_stat_upgrade.gd" id="1_x5hw4"]
+[ext_resource type="Script" uid="uid://cthtlqarddgvj" path="res://Util/Upgrade_Effects/gun_stat_upgrade.gd" id="2_d583g"]
+[ext_resource type="Script" uid="uid://bsls753e8sorv" path="res://Util/Upgrade_Effects/player_stat_upgrade.gd" id="3_7f7vv"]
+[ext_resource type="Texture2D" uid="uid://b8w5bct85846f" path="res://Graphics/upgrade/upgrade.png" id="5_d583g"]
+
+[sub_resource type="Resource" id="Resource_ajstc"]
+script = ExtResource("1_x5hw4")
+damage_mult = 0.9
+speed_mult = 1.2
+metadata/_custom_type_script = "uid://cpteyovolixas"
+
+[sub_resource type="Resource" id="Resource_0yfyy"]
+script = ExtResource("2_d583g")
+rof_mult = 1.15
+metadata/_custom_type_script = "uid://cthtlqarddgvj"
+
+[sub_resource type="Resource" id="Resource_ey2yv"]
+script = ExtResource("3_7f7vv")
+metadata/_custom_type_script = "uid://bsls753e8sorv"
+
+[resource]
+script = ExtResource("1_h6ihn")
+bullet_effects = SubResource("Resource_ajstc")
+player_effects = SubResource("Resource_ey2yv")
+gun_effects = SubResource("Resource_0yfyy")
+upgrade_name = "Lighter Shells"
+description = "efef"
+texture = ExtResource("5_d583g")
+metadata/_custom_type_script = "uid://c51r2scarmu7e"

@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_ipsux")
-value = 10.0
+damage_flat = 10.0
 upgrade_name = "Stronger Shells"
 description = "Makes bullets stronger"
 texture = ExtResource("2_kc6xc")

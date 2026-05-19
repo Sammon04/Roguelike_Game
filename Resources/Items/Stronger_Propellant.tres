@@ -5,8 +5,7 @@
 
 [resource]
 script = ExtResource("1_bl4ge")
-stat = 1
-value = 50.0
+speed_mult = 1.2
 upgrade_name = "Stronger Propellant"
 description = "Makes bullets faster"
 texture = ExtResource("2_gcav4")
