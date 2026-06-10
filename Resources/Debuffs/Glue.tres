@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StatDebuff" format=3 uid="uid://dw8skunkenr8s"]
+
+[ext_resource type="Script" uid="uid://j25n1pwe7kpt" path="res://Util/Debuff_Effects/stat_debuff.gd" id="1_w8qee"]
+
+[resource]
+script = ExtResource("1_w8qee")
+speed_reduction = 50.0
+duration = 5.0
+max_stacks = 1
+metadata/_custom_type_script = "uid://j25n1pwe7kpt"

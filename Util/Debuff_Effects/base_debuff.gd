@@ -1,6 +1,8 @@
 class_name BaseDebuff
 extends Resource
 
+var source_item: BaseItem
+
 func on_applied(enemy: BaseEnemy) -> void:
 	pass
 

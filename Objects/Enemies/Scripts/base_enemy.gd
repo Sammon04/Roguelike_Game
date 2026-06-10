@@ -5,9 +5,10 @@ extends CharacterBody2D
 @onready var anim: AnimationPlayer = $Visuals/AnimationPlayer
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var health_bar: ProgressBar = $HealthBar
+@onready var dmg_num_spawner: DamageNumberSpawner = $DamageNumberSpawner
 
 @export var credits = 0
-@export var enemy_speed = 0
+@export var move_speed = 0
 @export var max_health: int = 0
 
 var health: int
@@ -37,13 +38,14 @@ func _physics_process(_delta: float) -> void:
 		return
 	follow_player()
 	$HealthBar.global_position = global_position + Vector2(-20, -40)
+	dmg_num_spawner.global_position = global_position + Vector2(0, -30)
 
 func follow_player():
 	if not player:
 		return
 		
 	var direction = (player.global_position - position).normalized()
-	velocity = direction * enemy_speed
+	velocity = direction * move_speed
 	
 	move_and_slide()
 	look_at(player.global_position)
@@ -52,6 +54,8 @@ func take_damage(amount: int):
 	health -= amount
 	health_bar.value = health
 	health_bar.visible = true
+	
+	dmg_num_spawner.spawn_damage_number(amount)
 	
 	if health <= 0:
 		die()
@@ -75,16 +79,15 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		collision.disabled = false
 
 func apply_debuff(debuff: BaseDebuff) -> void:
-	if debuff is ActiveDebuff:
+	if debuff.has_method("add_stack"):
 		for active in active_debuffs:
-			if active is ActiveDebuff and active.source == debuff:
+			if active.source == debuff.source:
 				active.add_stack()
 				return
 	
 	var instance = debuff.duplicate()
-	
-	if instance is ActiveDebuff:
-		instance.source = debuff
+	instance.source = debuff.source
+	instance.source_item = debuff.source_item
 		
 	active_debuffs.append(instance)
 	instance.on_applied(self)

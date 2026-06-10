@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://djxtr1mu4n2cm" path="res://Objects/Enemies/Scripts/basic_enemy.gd" id="1_sto6h"]
 [ext_resource type="Texture2D" uid="uid://ceqoc6brfrlwd" path="res://Graphics/enemy/basic_enemy.png" id="2_ytyfe"]
+[ext_resource type="Script" uid="uid://dcsjtfwul6gg3" path="res://Util/Effects/damage_number_spawner.gd" id="3_15kab"]
+[ext_resource type="LabelSettings" uid="uid://cpgsxuhfwwo2g" path="res://Resources/LabelSettings/enemy_damage_numbers.tres" id="4_blgok"]
 
 [sub_resource type="Animation" id="Animation_md0e3"]
 length = 0.001
@@ -123,5 +125,12 @@ offset_bottom = -26.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_md0e3")
 fill_mode = 1
 show_percentage = false
+
+[node name="DamageNumberSpawner" type="Node2D" parent="." unique_id=634619555]
+top_level = true
+position = Vector2(0, -34.41)
+script = ExtResource("3_15kab")
+label_settings = ExtResource("4_blgok")
+metadata/_custom_type_script = "uid://dcsjtfwul6gg3"
 
 [connection signal="animation_finished" from="Visuals/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

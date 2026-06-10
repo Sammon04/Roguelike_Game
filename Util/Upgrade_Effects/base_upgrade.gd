@@ -1,9 +1,11 @@
-class_name BaseUpgrade
+class_name BaseItem
 extends Resource
 
-@export var upgrade_name: String
+@export var item_name: String
 @export var description: String
 @export var texture: Texture2D
+
+var num_held: int = 0
 
 func on_pickup(player: Player) -> void:
 	pass

@@ -10,7 +10,7 @@ var ready_to_chaag : bool
 var charge_direction : Vector2
 
 func _init():
-	enemy_speed = 500
+	move_speed = 500
 	max_health = 150
 
 func _ready():
@@ -25,7 +25,7 @@ func follow_player():
 		return
 	
 	if charging:
-		velocity = charge_direction * enemy_speed * (charge_duration_timer.time_left / charge_duration)
+		velocity = charge_direction * move_speed * (charge_duration_timer.time_left / charge_duration)
 		move_and_slide()
 	
 	if ready_to_chaag:

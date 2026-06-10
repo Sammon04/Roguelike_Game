@@ -1,19 +1,21 @@
-class_name PlayerStatUpgrade
-extends BaseUpgrade
+class_name PlayerStatItem
+extends BaseItem
 
-enum PlayerStat { ACCELERATION, MAX_SPEED, ROTATION_SPEED, FRICTION }
-
-@export var accel_flat: float = 0.0
+#@export var accel_flat: float = 0.0
+#@export var maxspeed_flat: float = 0.0
+#@export var rotatespeed_flat: float = 0.0
+#@export var friction_flat: float = 0.0
 @export var accel_mult: float = 1.0
-@export var maxspeed_flat: float = 0.0
 @export var maxspeed_mult: float = 1.0
-@export var rotatespeed_flat: float = 0.0
 @export var rotatespeed_mult: float = 1.0
-@export var friction_flat: float = 0.0
 @export var friction_mult: float = 1.0
 
+@export var scaling: float = 0.0       
+
+var stack_scaling: float = scaling * num_held                                                             
+
 func on_pickup(player: Player) -> void:
-	player.movement.acceleration = player.movement.acceleration * accel_mult + accel_flat
-	player.movement.max_speed = player.movement.max_speed * maxspeed_mult + maxspeed_flat
-	player.movement.rotation_speed = player.movement.rotation_speed * rotatespeed_mult + rotatespeed_flat
-	player.movement.friction = player.movement.friction * friction_mult + friction_flat
+	player.movement.acceleration *= accel_mult + stack_scaling if accel_mult > 1.0 else accel_mult - stack_scaling
+	player.movement.max_speed *= maxspeed_mult + stack_scaling if maxspeed_mult > 1.0 else maxspeed_mult - stack_scaling
+	player.movement.rotation_speed *= rotatespeed_mult + stack_scaling if rotatespeed_mult > 1.0 else rotatespeed_mult - stack_scaling
+	player.movement.friction *= friction_mult + stack_scaling if friction_mult > 1.0 else friction_mult - stack_scaling

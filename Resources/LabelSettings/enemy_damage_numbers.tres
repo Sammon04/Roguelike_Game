@@ -1,0 +1,6 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://cpgsxuhfwwo2g"]
+
+[sub_resource type="SystemFont" id="SystemFont_rtu5f"]
+
+[resource]
+font = SubResource("SystemFont_rtu5f")

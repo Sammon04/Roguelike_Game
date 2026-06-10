@@ -6,18 +6,13 @@
 [ext_resource type="Resource" uid="uid://bf56bfm8t6seb" path="res://Resources/EnemyData/fast_enemy.tres" id="4_c3nw7"]
 [ext_resource type="Resource" uid="uid://cscc6uiwcmwlk" path="res://Resources/EnemyData/tough_enemy.tres" id="5_q7l26"]
 [ext_resource type="Resource" uid="uid://div2orow7kdjg" path="res://Resources/EnemyData/charging_enemy.tres" id="6_sdhsa"]
-[ext_resource type="Script" uid="uid://chjuygrukdmqu" path="res://Util/Upgrade_Effects/base_upgrade.gd" id="7_0hefk"]
-[ext_resource type="Resource" uid="uid://b3lhhfcpemjm1" path="res://Resources/Items/Lighter_Shells.tres" id="8_rrurb"]
 [ext_resource type="PackedScene" uid="uid://cp24gwebc8141" path="res://Objects/Scenes/item.tscn" id="10_0hefk"]
+[ext_resource type="Script" uid="uid://cpxvc62v6dk0b" path="res://Objects/Scripts/item_spawner.gd" id="10_dq3la"]
 
 [node name="Director" type="Node" unique_id=1807380165]
 script = ExtResource("1_8c0qa")
 enemy_types = Array[ExtResource("2_15p4y")]([ExtResource("3_sdhsa"), ExtResource("4_c3nw7"), ExtResource("5_q7l26"), ExtResource("6_sdhsa")])
-upgrade_pool = Array[ExtResource("7_0hefk")]([ExtResource("8_rrurb")])
-item_scene = ExtResource("10_0hefk")
 spawn_delay = 1.0
-
-[node name="SpawnPoint" type="Marker2D" parent="." unique_id=1074548989]
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=166984506]
 wait_time = 3.0
@@ -25,6 +20,12 @@ autostart = true
 
 [node name="WaveTimer" type="Timer" parent="." unique_id=2045210107]
 one_shot = true
+
+[node name="ItemSpawner" type="Node" parent="." unique_id=933190561]
+script = ExtResource("10_dq3la")
+item_scene = ExtResource("10_0hefk")
+
+[node name="EnemySpawner" type="Node" parent="." unique_id=1097412367]
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]

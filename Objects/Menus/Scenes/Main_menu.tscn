@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://c7qc1ubxxj3u6"]
+
+[ext_resource type="Script" uid="uid://cqe5oxc6u8k3y" path="res://Objects/Menus/Scripts/main_menu.gd" id="1_787fc"]
+[ext_resource type="Texture2D" uid="uid://yvqyhxkgm5kd" path="res://Graphics/UI/game_title.png" id="1_pc006"]
+[ext_resource type="Texture2D" uid="uid://do5xe4vv42igs" path="res://Graphics/UI/start_game.png" id="2_f7j37"]
+[ext_resource type="Texture2D" uid="uid://cwxor77sabq8k" path="res://Graphics/UI/Menu_image.png" id="3_f7j37"]
+[ext_resource type="Texture2D" uid="uid://bg4yxpxomecdk" path="res://Graphics/UI/options.png" id="3_xwboo"]
+[ext_resource type="Texture2D" uid="uid://duij57jaxq8ks" path="res://Graphics/UI/quit.png" id="4_074w1"]
+
+[node name="MainMenu" type="Control" unique_id=1809134872]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_787fc")
+
+[node name="MenuOptions" type="VBoxContainer" parent="." unique_id=1376277501]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 50.0
+offset_top = -62.11499
+offset_right = 667.0
+offset_bottom = 251.88501
+grow_vertical = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="StartButton" type="TextureButton" parent="MenuOptions" unique_id=553261262]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("2_f7j37")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="OptionsButton" type="TextureButton" parent="MenuOptions" unique_id=2123824654]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("3_xwboo")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="QuitButton" type="TextureButton" parent="MenuOptions" unique_id=1232749486]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("4_074w1")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Logo" type="TextureRect" parent="." unique_id=940371855]
+layout_mode = 1
+offset_top = 41.0
+offset_right = 1280.0
+offset_bottom = 194.0
+texture = ExtResource("1_pc006")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Image" type="TextureRect" parent="." unique_id=1738294557]
+layout_mode = 0
+offset_left = 754.0
+offset_top = 198.0
+offset_right = 1241.0
+offset_bottom = 685.0
+texture = ExtResource("3_f7j37")
+
+[connection signal="pressed" from="MenuOptions/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MenuOptions/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -1,8 +1,8 @@
-class_name BulletDebuffUpgrade
-extends BulletUpgrade
+class_name BulletDebuffItem
+extends BulletItem
 
-@export var debuffs: Array[BaseDebuff] = []
+@export var debuff: BaseDebuff
 
+#Unused
 func apply_to_bullet(bullet: Bullet) -> void:
-	for debuff in debuffs:
-		bullet.on_hit_debuffs.append(debuff)
+	bullet.on_hit_debuffs.append(debuff)

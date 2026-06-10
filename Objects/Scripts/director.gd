@@ -1,19 +1,19 @@
+class_name Director
 extends Node
 
 @onready var spawn_timer : Timer = $SpawnTimer
 @onready var wave_timer : Timer = $WaveTimer
-@onready var spawn_point : Marker2D = $SpawnPoint
 @onready var wave_counter : Label = $"../WaveCounter"
+@onready var item_spawner: ItemSpawner = $ItemSpawner
+@onready var spawn_region: SpawnRegion = $"../SpawnRegion"
 @onready var player = get_tree().get_first_node_in_group("player") as Player
 
 @export var enemy_types : Array[EnemyData]
-@export var upgrade_pool : Array[BaseUpgrade]
-@export var item_scene : PackedScene
-@export var current_wave : int = 0
 @export var time_between_waves : float = 15
 @export var early_wave_delay : float = 3.0
 @export var spawn_delay : float = 0.8
 
+var current_wave : int = 0
 var wave_credits : int = 0
 var enemies_spawned : int = 0
 var enemies_alive : int = 0
@@ -35,10 +35,9 @@ func start_wave():
 	wave_credits = 40 + current_wave * 10
 	spawning_enemies = true
 	enemies_spawned = 0
-	print("Starting wave " + str(current_wave) + ", credits available: " + str(wave_credits))
 	spawn_timer.wait_time = spawn_delay
 	spawn_timer.start()
-	spawn_item()
+	item_spawner.spawn_at(pick_random_spawn_point())
 	
 func _on_spawn_timer_timeout() -> void:
 	if spawning_enemies:
@@ -56,27 +55,19 @@ func spawn_enemy():
 	var enemy = choice.scene.instantiate()
 	wave_credits -= choice.credits
 	
-	pick_random_spawn_point()
-	enemy.position = spawn_point.global_position
+	enemy.position = spawn_region.get_random_point(player)
 	
 	get_tree().current_scene.add_child(enemy)
 	
 	enemies_spawned += 1
 	enemies_alive += 1
 	
-	print("Enemy spawned")
-	print("Enemies spawned: " + str(enemies_spawned))
-	print("Enemies alive: " + str(enemies_alive))
-	print("Credits remaining: " + str(wave_credits))
 	enemy.enemy_died.connect(_on_enemy_died)
 
 func _on_enemy_died():
 	enemies_alive = max(enemies_alive - 1, 0)
 	
-	print("Enemy killed")
-	print("Enemies alive: " + str(enemies_alive))
 	if enemies_alive == 0 and wave_ended and not wave_shortened:
-		print("Ending wave early")
 		shorten_wave_timer()
 
 func shorten_wave_timer():
@@ -92,37 +83,20 @@ func end_wave():
 	
 	wave_ended = true
 	
-	print("ending wave")
 	spawn_timer.stop()
 	wave_timer.start(time_between_waves)
 
 func _on_wave_timer_timeout():
-	wave_ended = false
-	print("Ending wave normally")
+	#wave_ended = false
 	start_wave()
 
-func pick_random_spawn_point() -> void:
+func pick_random_spawn_point() -> Vector2:
 	var screen_size: Vector2 = get_viewport().size
-	
-	var valid_point: bool = false
-	while not valid_point:
-		var random_x: float = rng.randf_range(0.0, screen_size.x)
-		var random_y: float = rng.randf_range(0.0, screen_size.y)
-		
-		spawn_point.position = Vector2(random_x, random_y)
-		
-		if spawn_point.global_position.distance_to(player.global_position) >= 200:
-			valid_point = true	
-
-func get_random_upgrade() -> BaseUpgrade:
-	return upgrade_pool.pick_random()
-
-func spawn_item() -> void:
-	var item = item_scene.instantiate()
-	var item_effect = get_random_upgrade()
-	item.upgrade = item_effect
-	
-	pick_random_spawn_point()
-	item.position = spawn_point.global_position
-	get_tree().current_scene.add_child.call_deferred(item)
+	var attempts = 0
+	while attempts < 50:
+		attempts += 1
+		var pos = Vector2(rng.randf_range(0, screen_size.x), rng.randf_range(0, screen_size.y))
+		if pos.distance_to(player.global_position) >= 200:
+			return pos
+	return Vector2.ZERO
 	
