@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dy1nnr45clu1i" path="res://Graphics/player/pivot.png" id="6_00tjw"]
 [ext_resource type="AudioStream" uid="uid://byd077pd02q1u" path="res://Sounds/laserShoot.wav" id="6_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://becnddrrfla1s" path="res://Graphics/player/gun.png" id="8_x3vf3"]
+[ext_resource type="Script" uid="uid://b4spx5ip63qor" path="res://Util/Collision/hurtbox.gd" id="10_x3vf3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_od3ui"]
 size = Vector2(37.77778, 26.111113)
@@ -16,7 +17,11 @@ size = Vector2(37.77778, 26.111113)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00tjw"]
 bg_color = Color(1, 0.55628604, 0.49291283, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_apopc"]
+
 [node name="Player" type="CharacterBody2D" unique_id=1930106069 groups=["player"]]
+collision_layer = 2
+collision_mask = 13
 script = ExtResource("1_g2els")
 
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=118958777]
@@ -69,3 +74,13 @@ offset_right = 32.0
 offset_bottom = 5.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_00tjw")
 show_percentage = false
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=718325698]
+scale = Vector2(3.405, 2.36)
+collision_layer = 0
+collision_mask = 64
+script = ExtResource("10_x3vf3")
+metadata/_custom_type_script = "uid://b4spx5ip63qor"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=273167890]
+shape = SubResource("RectangleShape2D_apopc")

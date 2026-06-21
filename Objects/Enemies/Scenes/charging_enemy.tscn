@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://ceqoc6brfrlwd" path="res://Graphics/enemy/basic_enemy.png" id="2_02pgy"]
 [ext_resource type="Script" uid="uid://dcsjtfwul6gg3" path="res://Util/Effects/damage_number_spawner.gd" id="3_q53t0"]
 [ext_resource type="LabelSettings" uid="uid://cpgsxuhfwwo2g" path="res://Resources/LabelSettings/enemy_damage_numbers.tres" id="4_j2r1o"]
+[ext_resource type="Script" uid="uid://ymbyqulk3m53" path="res://Util/Collision/hitbox.gd" id="5_tbo8y"]
+[ext_resource type="Texture2D" uid="uid://t81xi8hoer38" path="res://Graphics/bullet/bullet_explosion.png" id="6_4hyp6"]
 
 [sub_resource type="Animation" id="Animation_md0e3"]
 length = 0.001
@@ -100,8 +102,16 @@ corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 corner_detail = 6
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_bkkbu"]
+
 [node name="Enemy" type="CharacterBody2D" unique_id=297808548 groups=["enemy"]]
+collision_layer = 4
+collision_mask = 15
 script = ExtResource("1_c4nhr")
+charge_cooldown = 1.0
+charge_duration = 1.0
+move_speed = 500
+max_health = 150
 
 [node name="Visuals" type="Node2D" parent="." unique_id=1416626296]
 scale = Vector2(0.99999994, 0.99999994)
@@ -137,6 +147,26 @@ position = Vector2(0, -34.765)
 script = ExtResource("3_q53t0")
 label_settings = ExtResource("4_j2r1o")
 metadata/_custom_type_script = "uid://dcsjtfwul6gg3"
+
+[node name="MeleeHitbox" type="Area2D" parent="." unique_id=782451633]
+position = Vector2(10.765, 0)
+scale = Vector2(2.66, 2.66)
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("5_tbo8y")
+metadata/_custom_type_script = "uid://ymbyqulk3m53"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeHitbox" unique_id=517778922]
+shape = SubResource("CircleShape2D_bkkbu")
+disabled = true
+debug_color = Color(1, 0.043137256, 0, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="MeleeHitbox" unique_id=1037801324]
+visible = false
+modulate = Color(1, 0, 0, 0.58431375)
+position = Vector2(-0.235, -0.26)
+scale = Vector2(0.48, 0.48)
+texture = ExtResource("6_4hyp6")
 
 [connection signal="animation_finished" from="Visuals/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="ChargeDelay" to="." method="_on_charge_delay_timeout"]

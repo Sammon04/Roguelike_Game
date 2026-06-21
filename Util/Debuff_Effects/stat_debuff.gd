@@ -5,7 +5,7 @@ extends BaseDebuff
 @export var duration: float = 0.0
 @export var max_stacks: int
 
-var source: StatDebuff
+var source_debuff: StatDebuff
 var debuff_stacks: int = 1
 var _elapsed: float = 0.0
 var _enemy: BaseEnemy

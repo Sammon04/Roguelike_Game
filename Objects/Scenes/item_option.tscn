@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cp24gwebc8141"]
+
+[ext_resource type="Script" uid="uid://cweppavge5i6i" path="res://Objects/Scripts/item_option.gd" id="1_5q27u"]
+
+[node name="ItemOption" type="PanelContainer" unique_id=1093357321]
+script = ExtResource("1_5q27u")
+
+[node name="ItemLabel" type="Label" parent="." unique_id=884196906]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=212537680]
+layout_mode = 2
+
+[node name="ItemButton" type="TextureButton" parent="VBoxContainer" unique_id=1858014842]
+layout_mode = 2
+
+[node name="ItemLabel" type="Label" parent="VBoxContainer" unique_id=1116257671]
+layout_mode = 2
+
+[connection signal="pressed" from="VBoxContainer/ItemButton" to="." method="_on_button_pressed"]

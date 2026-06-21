@@ -53,7 +53,7 @@ func shoot(spread, num_bullets) -> void:
 		#Applying Item Effects
 		#Apply multiplicative stat upgrades
 		for item in player.bullet_stat_items:
-			item.apply_effects(bullet)
+			item.apply_to_bullet(bullet)
 		
 		#Apply additive stat upgrades (unused currently)
 		
@@ -61,7 +61,7 @@ func shoot(spread, num_bullets) -> void:
 		for item in player.bullet_debuff_items:
 			var debuff = item.debuff.duplicate()
 			debuff.source_item = item
-			debuff.source = item.debuff
+			debuff.source_debuff = item.debuff
 			bullet.on_hit_debuffs.append(debuff)
 		
 		#Spawn Bullet

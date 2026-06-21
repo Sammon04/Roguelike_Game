@@ -3,10 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://b4vimpmksh6y8" path="res://Player/player.tscn" id="1_wbw1h"]
 [ext_resource type="PackedScene" uid="uid://ces8wovhg1sy2" path="res://Objects/Scenes/director.tscn" id="2_286st"]
 [ext_resource type="Script" uid="uid://debbefyd7erwv" path="res://Objects/Enemies/Scripts/enemy_data.gd" id="3_q1ycg"]
-[ext_resource type="Resource" uid="uid://dg410b53ylb7g" path="res://Resources/EnemyData/basic_enemy.tres" id="4_q1ycg"]
 [ext_resource type="Texture2D" uid="uid://8g4pr6lsxo82" path="res://Graphics/Scenery/black.png" id="4_y3x56"]
 [ext_resource type="Script" uid="uid://cymgoj7m1mf70" path="res://Objects/Scripts/spawn_region.gd" id="5_286st"]
+[ext_resource type="PackedScene" uid="uid://cp24gwebc8141" path="res://Objects/Scenes/item_option.tscn" id="7_qc8g6"]
 [ext_resource type="PackedScene" uid="uid://cp2kib5i8nare" path="res://Objects/Menus/Scenes/pause_menu.tscn" id="7_y3x56"]
+[ext_resource type="Resource" uid="uid://dxri2v2o5exl2" path="res://Resources/Items/Faster_Treads.tres" id="8_qc8g6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kln2b"]
 
@@ -30,7 +31,8 @@ expand_mode = 2
 position = Vector2(630, 352)
 
 [node name="Director" parent="." unique_id=1807380165 instance=ExtResource("2_286st")]
-enemy_types = Array[ExtResource("3_q1ycg")]([ExtResource("4_q1ycg")])
+process_mode = 4
+enemy_types = Array[ExtResource("3_q1ycg")]([])
 
 [node name="Borders" type="Node2D" parent="." unique_id=1969603087]
 position = Vector2(0, -1)
@@ -261,3 +263,6 @@ script = ExtResource("5_286st")
 
 [node name="PauseMenu" parent="." unique_id=1938963564 instance=ExtResource("7_y3x56")]
 process_mode = 3
+
+[node name="ItemOption" parent="." unique_id=1093357321 instance=ExtResource("7_qc8g6")]
+item = ExtResource("8_qc8g6")

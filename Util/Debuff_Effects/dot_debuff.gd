@@ -6,7 +6,7 @@ extends BaseDebuff
 @export var duration: float
 @export var max_stacks: int
 
-var source: DamageOverTime
+var source_debuff: DamageOverTime
 var debuff_stacks: int = 1
 var _timer: float = 0.0
 var _elapsed: float = 0.0

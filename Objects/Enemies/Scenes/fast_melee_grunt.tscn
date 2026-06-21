@@ -1,9 +1,11 @@
-[gd_scene format=3 uid="uid://brp2qbjp1ltkx"]
+[gd_scene format=3 uid="uid://cvy6j2c17tuut"]
 
-[ext_resource type="Script" uid="uid://phxsy1my12f1" path="res://Objects/Enemies/Scripts/tough_enemy.gd" id="1_v0mtp"]
-[ext_resource type="Texture2D" uid="uid://d2pl2jfsvmf4f" path="res://Graphics/enemy/tough_enemy.png" id="2_v0mtp"]
-[ext_resource type="Script" uid="uid://dcsjtfwul6gg3" path="res://Util/Effects/damage_number_spawner.gd" id="3_rgdkd"]
-[ext_resource type="LabelSettings" uid="uid://cpgsxuhfwwo2g" path="res://Resources/LabelSettings/enemy_damage_numbers.tres" id="4_c81kh"]
+[ext_resource type="Script" uid="uid://bmtfu7u4r5y5n" path="res://Objects/Enemies/Scripts/melee_chaser.gd" id="1_jbt2v"]
+[ext_resource type="Texture2D" uid="uid://cyuwlc3dcmrwg" path="res://Graphics/enemy/fast_enemy.png" id="2_ucpbs"]
+[ext_resource type="Script" uid="uid://dcsjtfwul6gg3" path="res://Util/Effects/damage_number_spawner.gd" id="3_wtvqb"]
+[ext_resource type="LabelSettings" uid="uid://cpgsxuhfwwo2g" path="res://Resources/LabelSettings/enemy_damage_numbers.tres" id="4_akxye"]
+[ext_resource type="Texture2D" uid="uid://t81xi8hoer38" path="res://Graphics/bullet/bullet_explosion.png" id="5_m41bd"]
+[ext_resource type="Script" uid="uid://ymbyqulk3m53" path="res://Util/Collision/hitbox.gd" id="6_rgq1c"]
 
 [sub_resource type="Animation" id="Animation_md0e3"]
 length = 0.001
@@ -100,15 +102,24 @@ corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 corner_detail = 6
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_8pe6c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3u8ne"]
+
 [node name="Enemy" type="CharacterBody2D" unique_id=297808548 groups=["enemy"]]
-script = ExtResource("1_v0mtp")
+collision_layer = 4
+collision_mask = 15
+script = ExtResource("1_jbt2v")
+move_speed = 300
+max_health = 50
+base_damage = 2.5
 
 [node name="Visuals" type="Node2D" parent="." unique_id=1416626296]
 scale = Vector2(0.99999994, 0.99999994)
 
 [node name="EnemySprite" type="Sprite2D" parent="Visuals" unique_id=1528180432]
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_v0mtp")
+texture = ExtResource("2_ucpbs")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals" unique_id=797329095]
 libraries/ = SubResource("AnimationLibrary_5uy6h")
@@ -126,11 +137,47 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_md0e3")
 fill_mode = 1
 show_percentage = false
 
-[node name="DamageNumberSpawner" type="Node2D" parent="." unique_id=1379074882]
+[node name="DamageNumberSpawner" type="Node2D" parent="." unique_id=1265237791]
 top_level = true
-position = Vector2(0, -34.335)
-script = ExtResource("3_rgdkd")
-label_settings = ExtResource("4_c81kh")
+position = Vector2(0, -33.74)
+script = ExtResource("3_wtvqb")
+label_settings = ExtResource("4_akxye")
 metadata/_custom_type_script = "uid://dcsjtfwul6gg3"
+
+[node name="AttackRange" type="Area2D" parent="." unique_id=1169194793]
+position = Vector2(22.41, 0)
+scale = Vector2(1.925, 1.925)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange" unique_id=1086771816]
+shape = SubResource("CircleShape2D_8pe6c")
+
+[node name="Sprite2D" type="Sprite2D" parent="AttackRange" unique_id=1300689295]
+visible = false
+modulate = Color(1, 1, 1, 0.5882353)
+position = Vector2(-0.19, -0.26)
+scale = Vector2(0.48, 0.48)
+texture = ExtResource("5_m41bd")
+
+[node name="MeleeHitbox" type="Area2D" parent="." unique_id=1644986903]
+position = Vector2(28.19, 0)
+scale = Vector2(2.66, 2.66)
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("6_rgq1c")
+metadata/_custom_type_script = "uid://ymbyqulk3m53"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeHitbox" unique_id=166079512]
+shape = SubResource("CircleShape2D_3u8ne")
+disabled = true
+debug_color = Color(1, 0.043137256, 0, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="MeleeHitbox" unique_id=302774633]
+visible = false
+modulate = Color(1, 0, 0, 0.58431375)
+position = Vector2(-0.235, -0.26)
+scale = Vector2(0.48, 0.48)
+texture = ExtResource("5_m41bd")
 
 [connection signal="animation_finished" from="Visuals/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

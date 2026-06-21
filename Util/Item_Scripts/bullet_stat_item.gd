@@ -13,7 +13,7 @@ extends BulletItem
 @export var scaling: float = 0.0
 var stack_scale: float
 
-func apply_effects(bullet: Bullet):
+func apply_to_bullet(bullet: Bullet):
 	stack_scale = scaling * num_held
 	
 	if damage_mult != 1.0:

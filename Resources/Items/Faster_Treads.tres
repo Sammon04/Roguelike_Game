@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PlayerStatItem" format=3 uid="uid://dxri2v2o5exl2"]
+
+[ext_resource type="Script" uid="uid://bsls753e8sorv" path="res://Util/Item_Scripts/player_stat_item.gd" id="1_3b5en"]
+[ext_resource type="Texture2D" uid="uid://b8w5bct85846f" path="res://Graphics/upgrade/upgrade.png" id="2_e17g6"]
+
+[resource]
+script = ExtResource("1_3b5en")
+accel_pcnt = 50.0
+maxspeed_pcnt = 500.0
+item_name = "Faster Treads"
+description = "peed"
+texture = ExtResource("2_e17g6")
+metadata/_custom_type_script = "uid://bsls753e8sorv"

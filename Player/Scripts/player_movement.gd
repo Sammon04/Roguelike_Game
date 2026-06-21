@@ -3,15 +3,18 @@ extends Node
 
 @export var base_acceleration: float = 400.0
 @export var base_rotation_speed: float = 5.0
-@export var base_friction: float = 2.0
-@export var base_max_speed: float = 500.0
-@export var boost_strength: float = 600.0
-@export var max_boost_amount: float = 3
+@export var base_friction: float = 1.0
+@export var base_max_speed: float = 200.0
+@export var base_boost_strength: float = 300.0
+@export var base_max_boost_amount: float = 3.0
 
 var acceleration: float
 var rotation_speed: float
 var friction: float
 var max_speed: float
+var boost_strength: float
+var max_boost_amount: float
+
 var can_boost: bool
 var boost_remaining: float
 
@@ -23,6 +26,8 @@ func _ready() -> void:
 	rotation_speed = base_rotation_speed
 	friction = base_friction
 	max_speed = base_max_speed
+	boost_strength = base_boost_strength
+	max_boost_amount = base_max_boost_amount
 	can_boost = true
 	boost_remaining = max_boost_amount
 	boost_bar.max_value = max_boost_amount
@@ -69,3 +74,4 @@ func _physics_process(delta) -> void:
 	
 	boost_bar.global_position = player.global_position + Vector2(-20, -60)
 	boost_bar.value = boost_remaining
+	print(player.velocity)
